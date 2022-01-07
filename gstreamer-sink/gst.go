@@ -77,7 +77,9 @@ func HandleSinkEOS(handler func()) {
 
 //export goHandleReceiveEOS
 func goHandleReceiveEOS() {
-	eosHandler()
+	if eosHandler != nil {
+		eosHandler()
+	}
 }
 
 // Push pushes a buffer on the appsrc of the GStreamer Pipeline

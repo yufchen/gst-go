@@ -108,7 +108,9 @@ func HandleSrcEOS(handler func()) {
 
 //export goHandleSendEOS
 func goHandleSendEOS() {
-	eosHandler()
+	if eosHandler != nil {
+		eosHandler()
+	}
 }
 
 func (p *Pipeline) setPropertyUint(name string, prop string, value uint) {
