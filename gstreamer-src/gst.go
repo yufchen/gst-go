@@ -46,15 +46,15 @@ func NewPipeline(codec, src string) (*Pipeline, error) {
 	switch codec {
 	case "vp8":
 		payloader = "rtpvp8pay"
-		pipelineStr = src + "! vp8enc name=encoder error-resilient=partitions keyframe-max-dist=10 auto-alt-ref=true cpu-used=5 deadline=1 ! rtpvp8pay name=rtpvp8pay mtu=1200 ! " + pipelineStr
+		pipelineStr = src + "! vp8enc name=encoder error-resilient=partitions keyframe-max-dist=10 auto-alt-ref=true cpu-used=5 deadline=1 ! rtpvp8pay name=rtpvp8pay mtu=1200 seqnum-offset=0 ! " + pipelineStr
 
 	case "vp9":
 		payloader = "rtpvp9pay"
-		pipelineStr = src + " ! vp9enc name=encoder keyframe-max-dist=10 auto-alt-ref=true cpu-used=5 ! rtpvp9pay name=rtpvp9pay mtu=1200 ! " + pipelineStr
+		pipelineStr = src + " ! vp9enc name=encoder keyframe-max-dist=10 auto-alt-ref=true cpu-used=5 ! rtpvp9pay name=rtpvp9pay mtu=1200 seqnum-offset=0 ! " + pipelineStr
 
 	case "h264":
 		payloader = "rtph264pay"
-		pipelineStr = src + " ! x264enc name=encoder pass=5 speed-preset=4 tune=4 ! rtph264pay name=rtph264pay mtu=1200 ! " + pipelineStr
+		pipelineStr = src + " ! x264enc name=encoder pass=5 speed-preset=4 tune=4 ! rtph264pay name=rtph264pay mtu=1200 seqnum-offset=0 ! " + pipelineStr
 
 	default:
 		return nil, ErrUnknownCodec
