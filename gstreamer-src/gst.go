@@ -46,7 +46,7 @@ func NewPipeline(codec, src string) (*Pipeline, error) {
 	switch codec {
 	case "vp8":
 		payloader = "rtpvp8pay"
-		pipelineStr = src + "! vp8enc name=encoder error-resilient=partitions keyframe-max-dist=10 auto-alt-ref=true cpu-used=5 deadline=1 ! rtpvp8pay name=rtpvp8pay mtu=1200 seqnum-offset=0 ! " + pipelineStr
+		pipelineStr = src + " ! vp8enc name=encoder error-resilient=partitions keyframe-max-dist=10 auto-alt-ref=true cpu-used=5 deadline=1 ! rtpvp8pay name=rtpvp8pay mtu=1200 seqnum-offset=0 ! " + pipelineStr
 
 	case "vp9":
 		payloader = "rtpvp9pay"

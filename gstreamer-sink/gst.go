@@ -32,13 +32,13 @@ func NewPipeline(codecName, dst string) (*Pipeline, error) {
 
 	switch codecName {
 	case "vp8":
-		pipelineStr += ", encoding-name=VP8-DRAFT-IETF-01 ! rtpjitterbuffer ! queue ! rtpvp8depay ! decodebin ! videoconvert ! " + dst
+		pipelineStr += ", encoding-name=VP8-DRAFT-IETF-01 ! rtpjitterbuffer ! rtpvp8depay ! decodebin ! videoconvert ! " + dst
 
 	case "vp9":
-		pipelineStr += ", encoding-name=VP9-DRAFT-IETF-01 ! rtpjitterbuffer ! queue ! rtpvp9depay ! decodebin ! videoconvert ! " + dst
+		pipelineStr += ", encoding-name=VP9-DRAFT-IETF-01 ! rtpjitterbuffer ! rtpvp9depay ! decodebin ! videoconvert ! " + dst
 
 	case "h264":
-		pipelineStr += " ! rtpjitterbuffer ! queue ! rtph264depay ! decodebin ! videoconvert ! " + dst
+		pipelineStr += " ! rtpjitterbuffer ! rtph264depay ! decodebin ! videoconvert ! " + dst
 
 	default:
 		return nil, ErrUnknownCodec
